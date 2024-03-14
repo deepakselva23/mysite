@@ -1,16 +1,16 @@
 # mysite
 
 ## Overview
-This is a simple Blog site where the user can post the blog content and can be publish them. Other users can view the blog and can comment for the blog post. This comment should be approved by the owner of the blog so that the other users can view them. 
+This is a simple Blog site where the superuser can post the blog content and can add comments to the post and these comments should be approved. Other users who haven't logged in, can only view the blog post. 
 
 
 ## Features
 
 - **Publish Posts:** Users can create and publish posts on the blog.
 - **Draft Posts:** Users can save posts as drafts for later publishing.
-- **Comments:** Users can leave comments on published posts.
-- **Approve Comments:** Comment should be approved by the owner of the blog.
-- **User Authentication:** Users can register, login, and manage their accounts.
+- **Comments:** Users can leave comments on published posts
+- **Approve Comments:** Comment should be approved.
+- **User Authentication:** Users can login, and manage their accounts.
 
 ## Technologies Used
 
