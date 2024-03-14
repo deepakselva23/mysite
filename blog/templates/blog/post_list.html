@@ -7,11 +7,24 @@
 <div class="centerstage">
     {% for row in post_list %}
         <div class="post">
-            <h1><a href="{% url 'post_detail' pk=row.pk%}"> {{row.title}} </a></h1>
+            {% if user.is_authenticated %}
+                <h1><a href="{% url 'post_detail' pk=row.pk%}"> {{row.title}} </a></h1>
+            {% else %}
+                <h1> {{row.title}} </h1>
+            {% endif %}
+
             <div class="date">
+                {% if row.publish_date  %}
                 <p> published on  {{ row.publish_date }} </p>
+                {% endif %}
             </div>
-            <a href="{% url 'post_detail' pk=row.pk%}">Comments : {{ row.approved_cmts.count }}</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'post_detail' pk=row.pk%}">Comments : {{ row.approved_cmts.count }}</a>
+            {% else %}
+                <p>Comments : {{ row.approved_cmts.count }}</p>
+            {% endif %}
+            
+
         </div>
     {% endfor %}
 </div>

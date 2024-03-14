@@ -19,6 +19,15 @@ class PostView(ListView):
         print("records ",records)
 
         return records
+
+
+class DraftPostView(ListView):
+    model = Post
+    template_name="post_list.html"
+    def get_queryset(self):
+        records = Post.objects.filter(publish_date__isnull=True)
+
+        return records
         
 
 class CreatePostView(CreateView):

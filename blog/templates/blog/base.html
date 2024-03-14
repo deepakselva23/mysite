@@ -37,14 +37,18 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
                 <li><a href="/post/new"> New Post </a></li>
-                <li><a href=""> Drafts </a></li>
-                <li><a href=""> Logout </a></li>
-                <li><a> Welcome User </a></li>
+                <li><a href="{% url 'draft_list' %}"> Drafts </a></li>
+                <li><a href="{% url 'logout' %}"> Logout </a></li>
+                <li><a> Welcome {{ user.username }} </a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
             </ul>
         </div>
     </nav>
-
+/
     <div class="content container">
         <div class="row">
             <div class="col-md-8">

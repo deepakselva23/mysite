@@ -19,11 +19,8 @@ class Post(models.Model):
         self.publish_date = timezone.now()
         self.save()
     
-    # def approved_cmts(self):
-    #     return self.comments.objects.filter(approved_time=True)
-        
     def approved_cmts(self):
-        return self.comments.filter(approved_time=True)
+        return self.comments.filter(approved_cmt=True)
 
     # def get_absolute_url(self):
     #     return reverse("post_detail",kwargs={'pk':self.pk})
@@ -36,14 +33,14 @@ class Comment(models.Model):
     author = models.CharField(max_length=100)
     comment_msg = models.CharField(max_length=100)
     created_date = models.DateTimeField(default=timezone.now())
-    approved_time = models.BooleanField(default=False)
+    approved_cmt = models.BooleanField(default=False)
 
 
     def __str__(self):
         return self.comment_msg
     
     def approve(self):
-        self.approved_time = True
+        self.approved_cmt = True
         self.save()
 
     
