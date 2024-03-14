@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+    <h1 class='posttitle loader'>{{ post.title }}</h1>
+
+    {% if post.publish_date %}
+        <div class="date postdate">
+            {{ post.publish_date }}
+        </div>
+       
+    {% else %}
+        <a class="btn btn-default" href="{% url 'postpublish' pk=post.pk %}">Publish </a>
+    {% endif %}
+
+    <p class='postcontent' >{{ post.text|safe|linebreaksbr }}</p>
+
+    <a class="btn btn-primary" href="{% url 'edit_post' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+    <a class="btn btn-primary" href="{% url 'remove_post' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+
+    <hr>
+    <a class="btn btn-primary btn-comment" href="{% url 'add_comment' pk=post.pk %}">Add Comment</a>
+
+    {% for row in post.comments.all %}
+        <br>
+
+        {% if not row.approved_cmt %}
+            <a class="btn btn-default" href="{% url 'remove_cmt' pk=row.pk%}"><span class="glyphicon glyphicon-remove"></span></a>
+            <a class="btn btn-default" href="{% url 'approve_cmt' pk=row.pk %}"><span class="glyphicon glyphicon-ok"></span></a>           
+
+        {% endif %}
+
+        <p>{{ row.created_date }}</p>
+        <p>{{ row.comment_msg }}</p>
+        <p>Posted by: <strong>{{ row.author }}</strong></p>
+    {% endfor %}
+
+{% endblock %}
